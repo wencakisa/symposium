@@ -4,8 +4,8 @@
   <div class="col-md-3">
     <%= gravatar_for(@user) %>
   </div>
-  <div class="col-md-7 col-md-offset-2">
-    <h2>Name: <i><%= @user.name %></i></h2>
-    <h3>Email: <i><%= @user.email %></i></h3>
+  <div class="col-md-7 col-md-offset-2" id="profileInfo">
+    <p><strong>Name: </strong><%= @user.name %></p>
+    <p><strong>Email: </strong><%= @user.email %></p>
   </div>
 </div>

@@ -1,2 +1,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+h1 {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.alert {
+  opacity: 0.9;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+.form-group.text-center > label {
+  font-style: italic;
+}
+
+#profileInfo {
+  font-size: 25px;
+}
