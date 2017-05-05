@@ -1,0 +1,13 @@
+<% provide(:title, 'Users') %>
+
+<% if @users.empty? %>
+  <h1>There are no users yet.</h1>
+<% else %>
+  <h1>All users: </h1>
+
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.name, user %></li>
+    <% end %>
+  </ul>
+<% end %>
