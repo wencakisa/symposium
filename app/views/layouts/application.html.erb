@@ -10,7 +10,10 @@
     <%= render 'layouts/nav' %>
     <div class="container">
       <% flash.each do |message_type, message| %>
-        <%= content_tag :div, message, class: "alert alert-#{message_type}" %>
+        <%= content_tag :div, class: "alert alert-#{message_type} alert-dismissable" do %>
+          <a href="#" class="close", data-dismiss="alert" aria-label="close">&times;</a>
+          <%= message %>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>
