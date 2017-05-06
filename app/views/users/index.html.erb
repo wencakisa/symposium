@@ -5,24 +5,12 @@
 <% else %>
   <h1>All users: </h1>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.id %></td>
-          <td><%= link_to user.name, user %></li>
-          <td><%= user.email %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
   <ul class="list-group">
+    <% @users.each do |user| %>
+      <li class="list-group-item">
+        <%= gravatar_for(user, size: 75) %>
+        <%= link_to user.name, user %>
+      </li>
+    <% end %>
   </ul>
 <% end %>
