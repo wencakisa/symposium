@@ -22,5 +22,11 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 
     get users_path
     assert_select 'title', full_title('Users')
+
+    get signup_path
+    assert_select 'title', full_title('Sign up')
+
+    get login_path
+    assert_select 'title', full_title('Log in')
   end
 end
