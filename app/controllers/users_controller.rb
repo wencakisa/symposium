@@ -19,7 +19,22 @@ class UsersController < ApplicationController
       flash[:success] = 'You have successfully registered.'
       redirect_to @user
     else
-      render 'new', errors: @user.errors.full_messages
+      render 'new'
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      flash[:success] = 'Profile updated successfully.'
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
