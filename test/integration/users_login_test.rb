@@ -5,12 +5,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:test)
   end
 
-  def log_in_as(user, password: 'password', remember_me: '1')
-    post login_path, params: { session: { email: user.email,
-                                          password: password,
-                                          remember_me: remember_me } }
-  end
-
   test "login with invalid information" do
     get login_path
     assert_template 'sessions/new'
@@ -26,13 +20,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
 
     post login_path, params: { session: { email: @user.email, password: 'password' } }
-    assert_redirected_to @user
+    assert_redirected_to users_path
     follow_redirect!
     assert is_logged_in?
-    assert_template 'users/show'
-    assert_select 'div.alert.alert-success'
+    assert_template 'users/index'
     assert_select 'a[href=?]', users_path
-    assert_select 'a[href=?]', user_path
+    assert_select 'a[href=?]', user_path(@user)
     assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', login_path, count: 0
 
