@@ -5,12 +5,9 @@
 <% else %>
   <h1>All users: </h1>
 
+  <%= render 'pagination' %>
   <ul class="list-group">
-    <% @users.each do |user| %>
-      <li class="list-group-item">
-        <%= gravatar_for(user, size: 75) %>
-        <%= link_to user.name, user %>
-      </li>
-    <% end %>
+    <%= render @users %>
   </ul>
+  <%= render 'pagination' %>
 <% end %>

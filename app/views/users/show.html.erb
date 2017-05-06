@@ -8,6 +8,8 @@
     <p><strong>Name: </strong><%= @user.name %></p>
     <p><strong>Email: </strong><%= @user.email %></p>
     <hr/>
-    <%= link_to 'Update profile info', edit_user_path(@user), class: 'btn btn-lg btn-info center-block' %>
+    <% if current_user?(@user) %>
+      <%= link_to 'Update profile info', edit_user_path(@user), class: 'btn btn-lg btn-info center-block' %>
+    <% end %>
   </div>
 </div>

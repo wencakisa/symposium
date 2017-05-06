@@ -1,6 +1,9 @@
 <div class="jumbotron">
   <h1>Welcome to Symposium!</h1>
-  <p>
-    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary', role: 'button' %>
-  </p>
+
+  <% unless logged_in? %>
+    <p>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary', role: 'button' %>
+    </p>
+  <% end %>
 </div>

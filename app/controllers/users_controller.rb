@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    log_out if logged_in?
     @user = User.new
   end
 
