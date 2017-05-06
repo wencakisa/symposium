@@ -5,6 +5,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:test)
   end
 
+  def log_in_as(user, password: 'password', remember_me: '1')
+    post login_path, params: { session: { email: user.email,
+                                          password: password,
+                                          remember_me: remember_me } }
+  end
+
   test "login with invalid information" do
     get login_path
     assert_template 'sessions/new'
@@ -39,5 +45,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'a[href=?]', login_path
     assert_select 'a[href=?]', logout_path, count: 0
+  end
+
+  test "login with remembering" do
+    log_in_as(@user)
+    assert_not_empty cookies['remember_token']
+  end
+
+  test "login without remembering" do
+    # Log in to set the cookie
+    log_in_as(@user)
+    # Log in again and verify the cookie is deleted
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies['remember_token']
   end
 end
