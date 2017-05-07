@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  padding-bottom: 10px;
+}
+
 h1 {
   text-align: center;
   padding-bottom: 50px;

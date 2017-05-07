@@ -1,4 +1,10 @@
 <li class="list-group-item">
-  <%= gravatar_for(user, size: 75) %>
+  <%= gravatar_for(user, size: 75, responsive: false) %>
   <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+    |
+    <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <span class="glyphicon glyphicon-trash"></span>
+    <% end %>
+  <% end %>
 </li>
